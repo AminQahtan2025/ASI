@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | Arab Sustainability Institute</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reusing the same CSS variables and base styles from main page */
+        :root {
+            --primary-color: #2c7d4f;
+            --secondary-color: #1a5276;
+            --accent-color: #f1c40f;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #333;
+            --text-light: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #236641;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: #154360;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+        
+        /* Header Styles (same as main page) */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a.active {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        nav ul li a.active:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .page-header-content {
+            width: 100%;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .breadcrumb li {
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .breadcrumb li:after {
+            content: '/';
+            position: absolute;
+            right: -15px;
+        }
+        
+        .breadcrumb li:last-child:after {
+            display: none;
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+        
+        /* Reports Filter */
+        .reports-filter {
+            background: var(--light-color);
+            padding: 30px 0;
+        }
+        
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+        
+        .filter-dropdowns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-dropdown {
+            position: relative;
+        }
+        
+        .filter-dropdown select {
+            padding: 12px 35px 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            appearance: none;
+            background: white;
+            font-size: 1rem;
+            min-width: 180px;
+        }
+        
+        .filter-dropdown i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--text-light);
+        }
+        
+        /* Reports Grid */
+        .reports-main {
+            padding: 80px 0;
+        }
+        
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .report-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .report-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .report-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: var(--dark-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .report-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .report-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .report-card:hover .report-image img {
+            transform: scale(1.1);
+        }
+        
+        .report-content {
+            padding: 25px;
+        }
+        
+        .report-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .report-category {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .report-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .report-excerpt {
+            margin-bottom: 20px;
+        }
+        
+        .report-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .report-downloads {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        
+        .pagination ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .pagination li {
+            margin: 0 5px;
+        }
+        
+        .pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        /* Featured Report */
+        .featured-report {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 60px;
+            display: flex;
+        }
+        
+        .featured-content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .featured-badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--dark-color);
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .featured-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .featured-excerpt {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .featured-image {
+            flex: 1;
+        }
+        
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Footer (same as main page) */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-color);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .featured-report {
+                flex-direction: column;
+            }
+            
+            .featured-image {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                min-width: 100%;
+            }
+            
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo.png" alt="Arab Sustainability Institute Logo">
+                <div class="logo-text">
+                    <h1>Arab Sustainability Institute</h1>
+                    <p>Training, Studies, Consulting</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reports.html" class="active">Reports</a></li>
+                    <li><a href="conferences.html">Conferences</a></li>
+                    <li><a href="studies.html">Studies</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="consultation.html">Consultation</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container page-header-content">
+            <h1>Research Reports</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="reports.html">Reports</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Reports Filter -->
+    <section class="reports-filter">
+        <div class="container filter-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search reports...">
+            </div>
+            <div class="filter-dropdowns">
+                <div class="filter-dropdown">
+                    <select>
+                        <option>All Categories</option>
+                        <option>Climate Change</option>
+                        <option>Renewable Energy</option>
+                        <option>Sustainable Cities</option>
+                        <option>Water Resources</option>
+                        <option>Circular Economy</option>
+                    </select>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="filter-dropdown">
+                    <select>
+                        <option>All Years</option>
+                        <option>2023</option>
+                        <option>2022</option>
+                        <option>2021</option>
+                        <option>2020</option>
+                        <option>2019</option>
+                    </select>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reports Main Content -->
+    <section class="reports-main">
+        <div class="container">
+            <!-- Featured Report -->
+            <div class="featured-report">
+                <div class="featured-content">
+                    <span class="featured-badge">Featured Report</span>
+                    <h2>Arab Sustainable Development Outlook 2023</h2>
+                    <p class="featured-excerpt">Comprehensive assessment of progress toward the Sustainable Development Goals (SDGs) across Arab countries, with policy recommendations for accelerating implementation.</p>
+                    <div>
+                        <a href="#" class="btn">Download Full Report</a>
+                        <a href="#" class="btn btn-secondary" style="margin-left: 15px;">Executive Summary</a>
+                    </div>
+                </div>
+                <div class="featured-image">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Featured Report Cover">
+                </div>
+            </div>
+
+            <h2 class="section-title">Latest Publications</h2>
+            
+            <div class="reports-grid">
+                <!-- Report 1 -->
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80" alt="Report Cover">
+                        <span class="report-badge">New</span>
+                    </div>
+                    <div class="report-content">
+                        <div class="report-meta">
+                            <span class="report-category">Climate Change</span>
+                            <span>June 2023</span>
+                        </div>
+                        <h3>Climate Resilience in GCC Cities</h3>
+                        <p class="report-excerpt">Analysis of urban climate adaptation strategies in Gulf Cooperation Council countries with case studies from 6 major cities.</p>
+                        <div class="report-actions">
+                            <a href="#" class="btn">Download</a>
+                            <span class="report-downloads"><i class="fas fa-download"></i> 1,245</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Report 2 -->
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Report Cover">
+                    </div>
+                    <div class="report-content">
+                        <div class="report-meta">
+                            <span class="report-category">ESG</span>
+                            <span>April 2023</span>
+                        </div>
+                        <h3>ESG Adoption in Arab Markets</h3>
+                        <p class="report-excerpt">Benchmarking study on environmental, social and governance disclosure practices across Arab stock exchanges.</p>
+                        <div class="report-actions">
+                            <a href="#" class="btn">Download</a>
+                            <span class="report-downloads"><i class="fas fa-download"></i> 892</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Report 3 -->
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Report Cover">
+                    </div>
+                    <div class="report-content">
+                        <div class="report-meta">
+                            <span class="report-category">Energy</span>
+                            <span>February 2023</span>
+                        </div>
+                        <h3>Renewable Energy Transition</h3>
+                        <p class="report-excerpt">Roadmap for achieving 50% renewable energy mix in North African power sectors by 2035.</p>
+                        <div class="report-actions">
+                            <a href="#" class="btn">Download</a>
+                            <span class="report-downloads"><i class="fas fa-download"></i> 1,532</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Report 4 -->
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Report Cover">
+                    </div>
+                    <div class="report-content">
+                        <div class="report-meta">
+                            <span class="report-category">Water</span>
+                            <span>December 2022</span>
+                        </div>
+                        <h3>Water Security in Arid Regions</h3>
+                        <p class="report-excerpt">Innovative solutions for water conservation and management in the Arab world's most water-stressed areas.</p>
+                        <div class="report-actions">
+                            <a href="#" class="btn">Download</a>
+                            <span class="report-downloads"><i class="fas fa-download"></i> 756</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Report 5 -->
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Report Cover">
+                    </div>
+                    <div class="report-content">
+                        <div class="report-meta">
+                            <span class="report-category">Circular Economy</span>
+                            <span>October 2022</span>
+                        </div>
+                        <h3>Waste-to-Wealth Initiatives</h3>
+                        <p class="report-excerpt">Best practices in circular economy implementation from across the MENA region with economic impact analysis.</p>
+                        <div class="report-actions">
+                            <a href="#" class="btn">Download</a>
+                            <span class="report-downloads"><i class="fas fa-download"></i> 643</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Report 6 -->
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Report Cover">
+                    </div>
+                    <div class="report-content">
+                        <div class="report-meta">
+                            <span class="report-category">Sustainable Finance</span>
+                            <span>August 2022</span>
+                        </div>
+                        <h3>Green Bonds in Arab Markets</h3>
+                        <p class="report-excerpt">Comprehensive study on the growth potential of sustainable finance instruments in Arab capital markets.</p>
+                        <div class="report-actions">
+                            <a href="#" class="btn">Download</a>
+                            <span class="report-downloads"><i class="fas fa-download"></i> 987</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i></a></li>
+                    <li><a href="#" class="active">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Arab Sustainability Institute</h3>
+                    <p>Advancing sustainable development through research, training, and strategic consulting across the Arab world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="conferences.html">Conferences</a></li>
+                        <li><a href="training.html">Training Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Research Areas</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Climate Change</a></li>
+                        <li><a href="#">Renewable Energy</a></li>
+                        <li><a href="#">Sustainable Cities</a></li>
+                        <li><a href="#">Water Security</a></li>
+                        <li><a href="#">Circular Economy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Sustainability Tower, Business District, Riyadh, Saudi Arabia</p>
+                    <p><i class="fas fa-phone"></i> +966 12 345 6789</p>
+                    <p><i class="fas fa-envelope"></i> info@arabsustainability.org</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Arab Sustainability Institute. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
