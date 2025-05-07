@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Programs | Arab Sustainability Institute</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reusing the same CSS variables and base styles from main page */
+        :root {
+            --primary-color: #2c7d4f;
+            --secondary-color: #1a5276;
+            --accent-color: #f1c40f;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #333;
+            --text-light: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #236641;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: #154360;
+        }
+        
+        .btn-accent {
+            background: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        .btn-accent:hover {
+            background: #f39c12;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+        
+        /* Header Styles (same as main page) */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a.active {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        nav ul li a.active:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .page-header-content {
+            width: 100%;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .breadcrumb li {
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .breadcrumb li:after {
+            content: '/';
+            position: absolute;
+            right: -15px;
+        }
+        
+        .breadcrumb li:last-child:after {
+            display: none;
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+        
+        /* Training Filter */
+        .training-filter {
+            background: var(--light-color);
+            padding: 30px 0;
+        }
+        
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .filter-tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .filter-tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .filter-dropdown {
+            position: relative;
+        }
+        
+        .filter-dropdown select {
+            padding: 12px 35px 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            appearance: none;
+            background: white;
+            font-size: 1rem;
+            min-width: 180px;
+        }
+        
+        .filter-dropdown i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--text-light);
+        }
+        
+        /* Training Programs */
+        .training-programs {
+            padding: 80px 0 50px;
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .program-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .program-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .program-card:hover .program-image img {
+            transform: scale(1.1);
+        }
+        
+        .program-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: var(--dark-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .program-content {
+            padding: 25px;
+        }
+        
+        .program-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .program-type {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .program-duration {
+            color: var(--text-light);
+        }
+        
+        .program-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .program-excerpt {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        .program-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .program-price {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        /* Certification Programs */
+        .certification-programs {
+            padding: 50px 0;
+            background-color: var(--light-color);
+        }
+        
+        .certification-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .certification-image {
+            width: 300px;
+            overflow: hidden;
+        }
+        
+        .certification-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .certification-card:hover .certification-image img {
+            transform: scale(1.1);
+        }
+        
+        .certification-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .certification-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .certification-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .meta-item i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .certification-excerpt {
+            margin-bottom: 25px;
+            flex: 1;
+        }
+        
+        /* Training Benefits */
+        .training-benefits {
+            padding: 80px 0;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        /* CTA Section */
+        .training-cta {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .training-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .training-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer (same as main page) */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-color);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .certification-card {
+                flex-direction: column;
+            }
+            
+            .certification-image {
+                width: 100%;
+                height: 250px;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .filter-tab {
+                flex: 1;
+                text-align: center;
+            }
+            
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .certification-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo.png" alt="Arab Sustainability Institute Logo">
+                <div class="logo-text">
+                    <h1>Arab Sustainability Institute</h1>
+                    <p>Training, Studies, Consulting</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                    <li><a href="conferences.html">Conferences</a></li>
+                    <li><a href="studies.html">Studies</a></li>
+                    <li><a href="training.html" class="active">Training</a></li>
+                    <li><a href="consultation.html">Consultation</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container page-header-content">
+            <h1>Training Programs</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="training.html">Training</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Training Filter -->
+    <section class="training-filter">
+        <div class="container filter-container">
+            <div class="filter-tabs">
+                <div class="filter-tab active">All Programs</div>
+                <div class="filter-tab">Public Workshops</div>
+                <div class="filter-tab">Corporate Training</div>
+                <div class="filter-tab">Certification</div>
+                <div class="filter-tab">Online Courses</div>
+            </div>
+            <div class="filter-dropdown">
+                <select>
+                    <option>All Topics</option>
+                    <option>ESG Reporting</option>
+                    <option>Sustainable Finance</option>
+                    <option>Climate Strategy</option>
+                    <option>Circular Economy</option>
+                    <option>Green Building</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Programs -->
+    <section class="training-programs">
+        <div class="container">
+            <h2 class="section-title">Upcoming Training Programs</h2>
+            
+            <div class="programs-grid">
+                <!-- Program 1 -->
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Training Program">
+                        <span class="program-badge">Early Bird</span>
+                    </div>
+                    <div class="program-content">
+                        <div class="program-meta">
+                            <span class="program-type">Workshop</span>
+                            <span class="program-duration">2 Days</span>
+                        </div>
+                        <h3>ESG Reporting Fundamentals</h3>
+                        <p class="program-excerpt">Comprehensive training on global ESG reporting standards including GRI, SASB, and TCFD with regional implementation case studies.</p>
+                        <div class="program-footer">
+                            <div class="program-price">$850</div>
+                            <a href="#" class="btn">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 2 -->
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Training Program">
+                    </div>
+                    <div class="program-content">
+                        <div class="program-meta">
+                            <span class="program-type">Online Course</span>
+                            <span class="program-duration">4 Weeks</span>
+                        </div>
+                        <h3>Sustainable Finance Essentials</h3>
+                        <p class="program-excerpt">Master the principles of green bonds, ESG investing, and climate-related financial disclosures in Arab markets.</p>
+                        <div class="program-footer">
+                            <div class="program-price">$650</div>
+                            <a href="#" class="btn">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 3 -->
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Training Program">
+                    </div>
+                    <div class="program-content">
+                        <div class="program-meta">
+                            <span class="program-type">Corporate Training</span>
+                            <span class="program-duration">Custom</span>
+                        </div>
+                        <h3>Carbon Footprint Management</h3>
+                        <p class="program-excerpt">In-house training on measuring, reporting, and reducing organizational carbon emissions with practical tools.</p>
+                        <div class="program-footer">
+                            <div class="program-price">Contact Us</div>
+                            <a href="#" class="btn">Request Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certification Programs -->
+    <section class="certification-programs">
+        <div class="container">
+            <h2 class="section-title">Certification Programs</h2>
+            
+            <!-- Certification 1 -->
+            <div class="certification-card">
+                <div class="certification-image">
+                    <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Certification Program">
+                </div>
+                <div class="certification-content">
+                    <h3>Certified Sustainability Professional (CSP)</h3>
+                    <div class="certification-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>6 Months</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Accredited</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Exam Required</span>
+                        </div>
+                    </div>
+                    <p class="certification-excerpt">Our flagship certification program provides comprehensive knowledge in sustainability strategy, reporting, and implementation. The curriculum covers global standards with regional adaptations for Arab business contexts, including case studies from leading organizations in the region.</p>
+                    <div>
+                        <a href="#" class="btn">Program Details</a>
+                        <a href="#" class="btn btn-secondary" style="margin-left: 15px;">Download Brochure</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certification 2 -->
+            <div class="certification-card">
+                <div class="certification-image">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Certification Program">
+                </div>
+                <div class="certification-content">
+                    <h3>ESG Analyst Certification</h3>
+                    <div class="certification-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Accredited</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Case Study</span>
+                        </div>
+                    </div>
+                    <p class="certification-excerpt">Specialized program for finance professionals focusing on environmental, social and governance analysis in investment decisions. Includes hands-on training with regional ESG datasets and rating methodologies specific to Arab markets.</p>
+                    <div>
+                        <a href="#" class="btn">Program Details</a>
+                        <a href="#" class="btn btn-secondary" style="margin-left: 15px;">Download Brochure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Benefits -->
+    <section class="training-benefits">
+        <div class="container">
+            <h2 class="section-title">Why Train With Us?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Expert Instructors</h3>
+                    <p>Learn from seasoned practitioners with real-world sustainability experience in Arab markets.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Practical Curriculum</h3>
+                    <p>Case-based learning focused on regional challenges and solutions.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Professional Network</h3>
+                    <p>Connect with sustainability professionals across industries and sectors.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Recognized Certificates</h3>
+                    <p>Earn credentials valued by employers across the region.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="training-cta">
+        <div class="container">
+            <h2>Custom Corporate Training Solutions</h2>
+            <p>We design tailored training programs to meet your organization's specific sustainability goals and challenges, delivered at your location or virtually for your team.</p>
+            <a href="#" class="btn">Request a Proposal</a>
+            <a href="#" class="btn btn-secondary" style="margin-left: 15px;">View Client List</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Arab Sustainability Institute</h3>
+                    <p>Advancing sustainable development through research, training, and strategic consulting across the Arab world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="training.html">Training Programs</a></li>
+                        <li><a href="consultation.html">Consultation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Training Programs</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Public Workshops</a></li>
+                        <li><a href="#">Corporate Training</a></li>
+                        <li><a href="#">Certification Programs</a></li>
+                        <li><a href="#">Online Courses</a></li>
+                        <li><a href="#">Executive Education</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ----</p>
+                    <p><i class="fas fa-phone"></i> ----</p>
+                    <p><i class="fas fa-envelope"></i> training@arabsustainability.org</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Arab Sustainability Institute. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

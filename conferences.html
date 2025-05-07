@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conferences | Arab Sustainability Institute</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reusing the same CSS variables and base styles from main page */
+        :root {
+            --primary-color: #2c7d4f;
+            --secondary-color: #1a5276;
+            --accent-color: #f1c40f;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #333;
+            --text-light: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #236641;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: #154360;
+        }
+        
+        .btn-accent {
+            background: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        .btn-accent:hover {
+            background: #f39c12;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+        
+        /* Header Styles (same as main page) */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a.active {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        nav ul li a.active:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .page-header-content {
+            width: 100%;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .breadcrumb li {
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .breadcrumb li:after {
+            content: '/';
+            position: absolute;
+            right: -15px;
+        }
+        
+        .breadcrumb li:last-child:after {
+            display: none;
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+        
+        /* Conferences Filter */
+        .conferences-filter {
+            background: var(--light-color);
+            padding: 30px 0;
+        }
+        
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .filter-tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .filter-tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .filter-dropdown {
+            position: relative;
+        }
+        
+        .filter-dropdown select {
+            padding: 12px 35px 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            appearance: none;
+            background: white;
+            font-size: 1rem;
+            min-width: 180px;
+        }
+        
+        .filter-dropdown i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--text-light);
+        }
+        
+        /* Upcoming Conferences */
+        .upcoming-conferences {
+            padding: 80px 0 50px;
+        }
+        
+        .conference-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            display: flex;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .conference-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .conference-date {
+            background: var(--secondary-color);
+            color: white;
+            padding: 30px;
+            min-width: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .conference-date .day {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .conference-date .month {
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+        
+        .conference-date .year {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        
+        .conference-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .conference-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        
+        .conference-title h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .conference-location {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+        }
+        
+        .conference-location i {
+            margin-right: 8px;
+        }
+        
+        .conference-badge {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-left: 20px;
+        }
+        
+        .conference-excerpt {
+            margin-bottom: 20px;
+            flex: 1;
+        }
+        
+        .conference-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .conference-speakers {
+            display: flex;
+            align-items: center;
+        }
+        
+        .speaker-avatars {
+            display: flex;
+            margin-right: 15px;
+        }
+        
+        .speaker-avatars img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-left: -10px;
+        }
+        
+        .speaker-avatars img:first-child {
+            margin-left: 0;
+        }
+        
+        .speakers-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        /* Past Conferences */
+        .past-conferences {
+            padding: 50px 0 80px;
+            background-color: var(--light-color);
+        }
+        
+        .conferences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .past-conference-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .past-conference-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .past-conference-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .past-conference-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .past-conference-card:hover .past-conference-image img {
+            transform: scale(1.1);
+        }
+        
+        .past-conference-content {
+            padding: 25px;
+        }
+        
+        .past-conference-date {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .past-conference-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .past-conference-excerpt {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        /* CTA Section */
+        .conference-cta {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .conference-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .conference-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer (same as main page) */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-color);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .conference-card {
+                flex-direction: column;
+            }
+            
+            .conference-date {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 15px 30px;
+            }
+            
+            .conference-date .day,
+            .conference-date .month,
+            .conference-date .year {
+                display: inline-block;
+                margin: 0 5px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .filter-tab {
+                flex: 1;
+                text-align: center;
+            }
+            
+            .conference-header {
+                flex-direction: column;
+            }
+            
+            .conference-badge {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            
+            .conference-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .conference-actions {
+                margin-top: 15px;
+            }
+            
+            .conferences-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo.png" alt="Arab Sustainability Institute Logo">
+                <div class="logo-text">
+                    <h1>Arab Sustainability Institute</h1>
+                    <p>Training, Studies, Consulting</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                    <li><a href="conferences.html" class="active">Conferences</a></li>
+                    <li><a href="studies.html">Studies</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="consultation.html">Consultation</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container page-header-content">
+            <h1>Conferences & Events</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="conferences.html">Conferences</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Conferences Filter -->
+    <section class="conferences-filter">
+        <div class="container filter-container">
+            <div class="filter-tabs">
+                <div class="filter-tab active">All Events</div>
+                <div class="filter-tab">Upcoming</div>
+                <div class="filter-tab">Past Events</div>
+                <div class="filter-tab">Webinars</div>
+            </div>
+            <div class="filter-dropdown">
+                <select>
+                    <option>All Categories</option>
+                    <option>Climate Change</option>
+                    <option>Renewable Energy</option>
+                    <option>Sustainable Cities</option>
+                    <option>Water Resources</option>
+                    <option>ESG</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Conferences -->
+    <section class="upcoming-conferences">
+        <div class="container">
+            <h2 class="section-title">Upcoming Conferences</h2>
+            
+            <!-- Conference 1 -->
+            <div class="conference-card">
+                <div class="conference-date">
+                    <div class="day">15</div>
+                    <div class="month">Nov</div>
+                    <div class="year">2023</div>
+                </div>
+                <div class="conference-content">
+                    <div class="conference-header">
+                        <div class="conference-title">
+                            <h3>Arab Sustainability Summit 2023</h3>
+                            <div class="conference-location">
+                                <i class="fas fa-map-marker-alt"></i> Riyadh, Saudi Arabia
+                            </div>
+                        </div>
+                        <div class="conference-badge">Early Bird Available</div>
+                    </div>
+                    <div class="conference-excerpt">
+                        <p>The premier gathering of sustainability leaders in the Arab world, featuring keynote addresses from ministers, CEOs, and international experts. This year's theme: "Accelerating the Green Transition in Arab Economies."</p>
+                    </div>
+                    <div class="conference-footer">
+                        <div class="conference-speakers">
+                            <div class="speaker-avatars">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Speaker">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Speaker">
+                                <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Speaker">
+                            </div>
+                            <div class="speakers-text">+12 Speakers</div>
+                        </div>
+                        <div class="conference-actions">
+                            <a href="#" class="btn">Register Now</a>
+                            <a href="#" class="btn btn-secondary" style="margin-left: 15px;">Agenda</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conference 2 -->
+            <div class="conference-card">
+                <div class="conference-date">
+                    <div class="day">28</div>
+                    <div class="month">Feb</div>
+                    <div class="year">2024</div>
+                </div>
+                <div class="conference-content">
+                    <div class="conference-header">
+                        <div class="conference-title">
+                            <h3>Water Security Forum 2024</h3>
+                            <div class="conference-location">
+                                <i class="fas fa-map-marker-alt"></i> Dubai, UAE
+                            </div>
+                        </div>
+                        <div class="conference-badge">Call for Papers Open</div>
+                    </div>
+                    <div class="conference-excerpt">
+                        <p>International forum addressing water scarcity solutions for arid regions, featuring cutting-edge research on desalination technologies, water conservation strategies, and policy frameworks for sustainable water management.</p>
+                    </div>
+                    <div class="conference-footer">
+                        <div class="conference-speakers">
+                            <div class="speaker-avatars">
+                                <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Speaker">
+                                <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Speaker">
+                            </div>
+                            <div class="speakers-text">+8 Speakers</div>
+                        </div>
+                        <div class="conference-actions">
+                            <a href="#" class="btn">Submit Abstract</a>
+                            <a href="#" class="btn btn-secondary" style="margin-left: 15px;">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Conferences -->
+    <section class="past-conferences">
+        <div class="container">
+            <h2 class="section-title">Past Conferences</h2>
+            
+            <div class="conferences-grid">
+                <!-- Past Conference 1 -->
+                <div class="past-conference-card">
+                    <div class="past-conference-image">
+                        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Conference Image">
+                    </div>
+                    <div class="past-conference-content">
+                        <div class="past-conference-date">March 15-17, 2023</div>
+                        <h3>Green Finance MENA 2023</h3>
+                        <p class="past-conference-excerpt">Exploring the growth of sustainable finance instruments in Middle Eastern capital markets and Islamic finance innovations.</p>
+                        <a href="#" class="btn btn-accent">View Materials</a>
+                    </div>
+                </div>
+                
+                <!-- Past Conference 2 -->
+                <div class="past-conference-card">
+                    <div class="past-conference-image">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Conference Image">
+                    </div>
+                    <div class="past-conference-content">
+                        <div class="past-conference-date">October 5-7, 2022</div>
+                        <h3>Circular Economy Forum</h3>
+                        <p class="past-conference-excerpt">Showcasing successful waste-to-wealth initiatives and industrial symbiosis case studies from across the region.</p>
+                        <a href="#" class="btn btn-accent">View Materials</a>
+                    </div>
+                </div>
+                
+                <!-- Past Conference 3 -->
+                <div class="past-conference-card">
+                    <div class="past-conference-image">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Conference Image">
+                    </div>
+                    <div class="past-conference-content">
+                        <div class="past-conference-date">June 12-14, 2022</div>
+                        <h3>Renewable Energy Transition</h3>
+                        <p class="past-conference-excerpt">Roadmaps for achieving national renewable energy targets and integrating solar/wind into regional grids.</p>
+                        <a href="#" class="btn btn-accent">View Materials</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="conference-cta">
+        <div class="container">
+            <h2>Host Your Event With Us</h2>
+            <p>The Arab Sustainability Institute provides world-class facilities and expertise to host your sustainability-focused conference, workshop, or corporate event in the heart of the region.</p>
+            <a href="#" class="btn">Request Proposal</a>
+            <a href="#" class="btn btn-secondary" style="margin-left: 15px;">View Our Facilities</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Arab Sustainability Institute</h3>
+                    <p>Advancing sustainable development through research, training, and strategic consulting across the Arab world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="conferences.html">Conferences</a></li>
+                        <li><a href="training.html">Training Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Event Types</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Annual Summit</a></li>
+                        <li><a href="#">Industry Forums</a></li>
+                        <li><a href="#">Executive Roundtables</a></li>
+                        <li><a href="#">Training Workshops</a></li>
+                        <li><a href="#">Webinar Series</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> -----</p>
+                    <p><i class="fas fa-phone"></i> -----</p>
+                    <p><i class="fas fa-envelope"></i> events@arabsustainability.org</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Arab Sustainability Institute. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

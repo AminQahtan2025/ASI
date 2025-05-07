@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Services | Arab Sustainability Institute</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reusing the same CSS variables and base styles from main page */
+        :root {
+            --primary-color: #2c7d4f;
+            --secondary-color: #1a5276;
+            --accent-color: #f1c40f;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #333;
+            --text-light: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #236641;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: #154360;
+        }
+        
+        .btn-accent {
+            background: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        .btn-accent:hover {
+            background: #f39c12;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+        
+        /* Header Styles (same as main page) */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a.active {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        nav ul li a.active:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .page-header-content {
+            width: 100%;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .breadcrumb li {
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .breadcrumb li:after {
+            content: '/';
+            position: absolute;
+            right: -15px;
+        }
+        
+        .breadcrumb li:last-child:after {
+            display: none;
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+        
+        /* Consultation Services */
+        .consultation-services {
+            padding: 80px 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            background: var(--primary-color);
+            color: white;
+            font-size: 2.5rem;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .service-content {
+            padding: 30px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .service-content ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .service-content li {
+            margin-bottom: 8px;
+        }
+        
+        /* Case Studies */
+        .case-studies {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .case-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .case-tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .case-tab.active {
+            border-bottom: 3px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .case-content {
+            display: none;
+        }
+        
+        .case-content.active {
+            display: block;
+        }
+        
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .case-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .case-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .case-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .case-details {
+            padding: 25px;
+        }
+        
+        .case-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .case-meta {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .case-excerpt {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        /* Consultation Process */
+        .consultation-process {
+            padding: 80px 0;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            counter-reset: process-counter;
+        }
+        
+        .process-step {
+            position: relative;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .process-step:before {
+            counter-increment: process-counter;
+            content: counter(process-counter);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .process-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .process-step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        /* CTA Section */
+        .consultation-cta {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .consultation-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .consultation-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer (same as main page) */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-color);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .process-steps {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .case-tab {
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+                border-left: 3px solid transparent;
+            }
+            
+            .case-tab.active {
+                border-left: 3px solid var(--primary-color);
+                border-bottom: 1px solid #eee;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo.png" alt="Arab Sustainability Institute Logo">
+                <div class="logo-text">
+                    <h1>Arab Sustainability Institute</h1>
+                    <p>Training, Studies, Consulting</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                    <li><a href="conferences.html">Conferences</a></li>
+                    <li><a href="studies.html">Studies</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="consultation.html" class="active">Consultation</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container page-header-content">
+            <h1>Consultation Services</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="consultation.html">Consultation</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Consultation Services -->
+    <section class="consultation-services">
+        <div class="container">
+            <h2 class="section-title">Our Consultation Services</h2>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>ESG Strategy Development</h3>
+                        <p>Comprehensive environmental, social and governance strategy formulation aligned with global standards and regional requirements:</p>
+                        <ul>
+                            <li>Materiality assessments</li>
+                            <li>Stakeholder engagement frameworks</li>
+                            <li>ESG governance structures</li>
+                            <li>Performance benchmarking</li>
+                        </ul>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Sustainability Reporting</h3>
+                        <p>End-to-end support for sustainability disclosure and communication:</p>
+                        <ul>
+                            <li>GRI, SASB, TCFD alignment</li>
+                            <li>Data collection systems</li>
+                            <li>Report writing and design</li>
+                            <li>Assurance readiness</li>
+                        </ul>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Green Building Certification</h3>
+                        <p>Guidance through international and regional green building certification processes:</p>
+                        <ul>
+                            <li>LEED, BREEAM, Mostadam</li>
+                            <li>Energy and water efficiency</li>
+                            <li>Indoor environmental quality</li>
+                            <li>Sustainable materials selection</li>
+                        </ul>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Circular Economy Transition</h3>
+                        <p>Roadmap development for shifting from linear to circular business models:</p>
+                        <ul>
+                            <li>Waste-to-resource strategies</li>
+                            <li>Product lifecycle assessment</li>
+                            <li>Extended producer responsibility</li>
+                            <li>Industrial symbiosis</li>
+                        </ul>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Renewable Energy Advisory</h3>
+                        <p>Technical and financial analysis for clean energy projects:</p>
+                        <ul>
+                            <li>Feasibility studies</li>
+                            <li>Technology selection</li>
+                            <li>PPA structuring</li>
+                            <li>Regulatory compliance</li>
+                        </ul>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-water"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Water Stewardship</h3>
+                        <p>Comprehensive water resource management solutions for arid regions:</p>
+                        <ul>
+                            <li>Water risk assessment</li>
+                            <li>Conservation strategies</li>
+                            <li>Wastewater treatment</li>
+                            <li>Stakeholder engagement</li>
+                        </ul>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies">
+        <div class="container">
+            <h2 class="section-title">Client Success Stories</h2>
+            
+            <div class="case-tabs">
+                <div class="case-tab active" data-tab="all">All Industries</div>
+                <div class="case-tab" data-tab="energy">Energy</div>
+                <div class="case-tab" data-tab="finance">Finance</div>
+                <div class="case-tab" data-tab="realestate">Real Estate</div>
+                <div class="case-tab" data-tab="government">Government</div>
+            </div>
+            
+            <div class="case-content active" id="all">
+                <div class="case-grid">
+                    <!-- Case 1 -->
+                    <div class="case-card">
+                        <div class="case-image">
+                            <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Case Study">
+                        </div>
+                        <div class="case-details">
+                            <h3>ESG Integration for Regional Bank</h3>
+                            <div class="case-meta">Financial Services | ESG Strategy</div>
+                            <p class="case-excerpt">Developed comprehensive ESG integration framework for investment decisions across $15B portfolio.</p>
+                            <a href="#" class="btn btn-accent">View Case Study</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Case 2 -->
+                    <div class="case-card">
+                        <div class="case-image">
+                            <img src="https://images.unsplash.com/photo-1486401899868-0e435ed85128?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Case Study">
+                        </div>
+                        <div class="case-details">
+                            <h3>Net Zero Roadmap for Energy Company</h3>
+                            <div class="case-meta">Oil & Gas | Climate Strategy</div>
+                            <p class="case-excerpt">Created 2040 decarbonization pathway with interim targets and implementation plan.</p>
+                            <a href="#" class="btn btn-accent">View Case Study</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Case 3 -->
+                    <div class="case-card">
+                        <div class="case-image">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Case Study">
+                        </div>
+                        <div class="case-details">
+                            <h3>Sustainable Urban Development</h3>
+                            <div class="case-meta">Government | Smart Cities</div>
+                            <p class="case-excerpt">Advised on sustainability integration for new 10km² urban expansion project.</p>
+                            <a href="#" class="btn btn-accent">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="case-content" id="energy">
+                <div class="case-grid">
+                    <!-- Energy Case 1 -->
+                    <div class="case-card">
+                        <div class="case-image">
+                            <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Case Study">
+                        </div>
+                        <div class="case-details">
+                            <h3>Renewable Energy Transition</h3>
+                            <div class="case-meta">Utilities | Energy Transition</div>
+                            <p class="case-excerpt">Developed 10-year renewable integration strategy for national utility company.</p>
+                            <a href="#" class="btn btn-accent">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other industry case studies would go here -->
+            <!-- Content for finance, realestate, government tabs would be similar -->
+        </div>
+    </section>
+
+    <!-- Consultation Process -->
+    <section class="consultation-process">
+        <div class="container">
+            <h2 class="section-title">Our Consultation Process</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Needs Assessment</h3>
+                    <p>Initial consultation to understand your sustainability challenges and objectives.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Proposal Development</h3>
+                    <p>Tailored scope of work with deliverables, timeline, and investment.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Team Formation</h3>
+                    <p>Dedicated project team with relevant expertise assembled.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Implementation</h3>
+                    <p>Execution with regular progress updates and stakeholder engagement.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Delivery & Support</h3>
+                    <p>Final deliverables presented with training and ongoing support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="consultation-cta">
+        <div class="container">
+            <h2>Ready to Transform Your Sustainability Strategy?</h2>
+            <p>Our team of experts is ready to help your organization achieve its sustainability goals with tailored solutions that deliver measurable impact.</p>
+            <a href="contact.html" class="btn">Request Consultation</a>
+            <a href="#" class="btn btn-secondary" style="margin-left: 15px;">Download Service Catalog</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Arab Sustainability Institute</h3>
+                    <p>Advancing sustainable development through research, training, and strategic consulting across the Arab world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="consultation.html">Consultation</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Consultation Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">ESG Strategy</a></li>
+                        <li><a href="#">Sustainability Reporting</a></li>
+                        <li><a href="#">Circular Economy</a></li>
+                        <li><a href="#">Renewable Energy</a></li>
+                        <li><a href="#">Water Stewardship</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ------</p>
+                    <p><i class="fas fa-phone"></i> ----</p>
+                    <p><i class="fas fa-envelope"></i> consulting@arabsustainability.org</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Arab Sustainability Institute. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Case Studies Tab Functionality
+        document.querySelectorAll('.case-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                document.querySelectorAll('.case-tab').forEach(t => {
+                    t.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Hide all case content
+                document.querySelectorAll('.case-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show selected case content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
