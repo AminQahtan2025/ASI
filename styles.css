@@ -376,7 +376,6 @@ bottom: 10px;
         }
                 
         .footer-links a {
-            display: flex;
             text-decoration: none;
             color: white;
         }
